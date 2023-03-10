@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<People>
+    <person>
+        <age>25</age>
+        <name>구기현</name>
+        <gender>Male</gender>
+        <role>SAX 파싱담당</role>
+    </person>
+    <person>
+        <age>25</age>
+        <name>정재균</name>
+        <gender>Male</gender>
+        <role>SAX 파싱담당</role>
+    </person>
+    <person>
+        <age>22</age>
+        <name>전다미</name>
+        <gender>Female</gender>
+        <role>DOM 파싱담당</role>
+    </person>
+    <person>
+        <age>24</age>
+        <name>이성일</name>
+        <gender>Male</gender>
+        <role>DOM 파싱담당팀장</role>
+    </person>
+    <person>
+        <age>22</age>
+        <name>정은지</name>
+        <gender>Female</gender>
+        <role>DOM 파싱담당</role>
+    </person>
+</People>
