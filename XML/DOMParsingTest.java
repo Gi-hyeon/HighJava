@@ -58,6 +58,7 @@ public class DOMParsingTest {
                     System.out.print(", 역할 : " + getValue("role", element));
                     System.out.println();
                 }
+                
             }
 
 
