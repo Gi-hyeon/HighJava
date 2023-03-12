@@ -15,12 +15,17 @@ public class DOMParsingTest {
             File personFile = new File("./src/xml/person.xml");
 
             // XML 문서를 파싱하기 위한 DocumentBuilderFactory 객체 생성
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            
             // XML 문서를 생성하기 위한 DocumentBuilder 객체 생성
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            
             // 파싱할 person.xml 파일을 Document 객체로 변환 
+            
+            /* 
+             * DocumentBuilderFactory 클래스는 DocumentBuilder 인스턴스를 생성하고
+             * DocumentBuilder는 XML 문서를 파싱하여 Document 객체를 생성
+             * 위 Builder 객체를 사용하여 XML문서를 파싱하고 DOcument 객체를 반환합니다.
+             * 
+             */
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(personFile);
             
             // XML 문서의 루트 요소를 가져온 후 -> 일관성을 유지화하기 위해 정규화하는 메서드
@@ -29,16 +34,21 @@ public class DOMParsingTest {
             // xml 파일의 person 태그를 읽어 Nodelist 객체에 저장해준다. 
             // 이 객체는 배열과 비슷한 형태를 가지고 있어 인덱스를 통해서 접근이 가능하다.
             // person을 가지고 있는 5개의 요소를 NodeList에 저장시킨다.
+            // -- getElementsByTagName() 지정한 태그 이름을 nodelist로 반환시킨다.
+            // -- person 태그를 가진 노드들을 NodeList 객체에 저장한다.
             NodeList list = document.getElementsByTagName("person");
             
             
             // 자식 노드를 순회하면서 출력
-            // DOM 파서는 XML 문서를 트리 구조로 변환하고 각 요소는 노트로 표현된다.
+            // DOM 파서는 XML 문서를 트리 구조로 변환하고 각 요소는 노드로 표현된다.
+            // -- for문을 돌아 자식 노드를 순회하면서 각각의 <person> 노드를 가지고온다.
             for (int i = 0; i < list.getLength(); i++) {
                 Node node = list.item(i);
                 
                 // Element_node -> 요소노드로 비교하기 위해서는 저장했던 노드리스트의 값을 노드에 저장시켜줘야함
                 // 요소 노드인 경우 출력  -> 요소 노드 : 요소 노드는 하위속성을 가질 수 없다.
+                // -- <person> 노드를 순회하며 자식 노드를 꺼내오면서 그 노드가 Element Node인 경우
+                // -- 값을 출력한다.
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                 	// 
                     Element element = (Element) node;
@@ -67,8 +77,9 @@ public class DOMParsingTest {
 //        return node.getNodeValue();
     	
     	
-    	// 해당 Element에서 지정한 태그명을 가진 노드를 찾아내고
+    	// -- 해당 Element에서 지정한 태그명을 가진 노드를 찾아내고
     	// item(0) -> 그 중 첫번째 노드를 선택한다  -> 첫번째 노드의 모든 텍스트 내용을 가져와서 반환한다.
+    	// -- 엘리먼트에서 지정한 태그명을 가진 노드를 찾아내고 그 첫 번째 노드의 텍스트 내용
     	return element.getElementsByTagName(tag).item(0).getTextContent();
     }
 }
