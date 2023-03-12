@@ -7,10 +7,10 @@ import java.util.List;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+// Person 클래스는 XML 파일에서 파싱한 내용을 저장하기 위해 사용되는 클래스
 class Person {
 	private int age;
 	private String name;
@@ -69,6 +69,7 @@ class Saxhandler extends DefaultHandler{
 	// 내부
 	
 	// 태그를 처음 만나면 발생하는 이벤트
+	// -- <person> 태그를 만나면 새로운 Person 객체를 생성하고 리스트에 추가합니다.
 	@Override
 	public void startElement(String uri, String localName, String name, org.xml.sax.Attributes att)
 			throws SAXException {
@@ -80,6 +81,8 @@ class Saxhandler extends DefaultHandler{
 	}
 	
 	// 끝 태그를 만났을 때 발생하는 이벤트 
+	// -- 닫히는 </person> 태그를 만나면 비교문을 이용해 해당 태그를 파싱하면 
+	// -- 그 엘리먼트 노드값을 저장시킨다.
 	@Override
 	public void endElement(String uri, String localName, String name) throws SAXException {
 		// TODO Auto-generated method stub
@@ -94,6 +97,8 @@ class Saxhandler extends DefaultHandler{
 		}
 	}
 	
+	// ch XML 파일에서 읽은 문자 배열
+	// start 시작되는 인덱스, length 길이
 	// 태그와 태그 사이의 내용을 처리 -> 태그와 태그 사이의 text(내용)을 처리하기 위한 이벤트
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
@@ -102,6 +107,7 @@ class Saxhandler extends DefaultHandler{
 		str = new String(ch, start, length);
 	}
 	
+	// Person 객체들을 담고있는 리스트를 반환
 	public List<Person> getPersonList(){
 		return personList;
 	}
@@ -129,9 +135,12 @@ public class SaxHandlerTest {
 			Saxhandler handler = new Saxhandler();
 			
 			// parse 메소드에 person.xml을 보내면 handler를 통해 파싱된다.
+			// parse() 메서드가 호출되면 parser 객체는 handler 객체의 메서드를 적절한 타이밍에
+			// 호출하면서 xml을 파싱한다.
 			parser.parse(file, handler);
 			
-			// getPersonList는 saxhandler 클래스에서 추가된 'person' 객체들을 담고있는 리스트를 반환한다.
+			// getPersonList는 handler 클래스에서 추가된 'person' 객체들을 담고있는 리스트를 반환한다.
+			// -- person 객체들을 가지고 있는 List를 list에 할당합니다.
 			List<Person> list = handler.getPersonList();
 			
 			// 파싱된 데이터를 통해 person의 정보를 가지고온다. 
