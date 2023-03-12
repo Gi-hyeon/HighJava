@@ -124,7 +124,7 @@ public class SaxHandlerTest {
 //		System.out.println(file2.getAbsolutePath());
 		
 		File file = new File("./src/xml/person.xml");
-		// SAXParserFactory instance 객체 생성
+		// Parser를 생성하기위한 팩토리 객체 생성
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		
 		try {
