@@ -64,6 +64,9 @@ public class JdbcTest06Tea {
 			case 4:
 				displayAllMember();
 				break;
+			case 5:
+				updateMember2();
+				break;
 			case 0:
 				System.out.println("종료...");
 				return;
@@ -74,6 +77,87 @@ public class JdbcTest06Tea {
 		}
 	}
 	
+	private void updateMember2() {
+		// TODO Auto-generated method stub
+		String change = "";
+		int update = 0;
+		String updateFieldTitle = "";
+		
+		System.out.println();
+		System.out.println("수정할 회원 정보를 입력하세요...");
+		System.out.print("회원ID > ");
+		String id = scanner.nextLine();
+		
+		int count = getMemberCount(id);
+		if (count == 0) {
+			System.out.println(id + "는(은) 없는 회원ID 입니다...");
+			System.out.println("수정 작업을 마칩니다...");
+			return;
+		} 
+		
+		int select;
+		String updateField = "";
+		do {
+			System.out.println();
+			System.out.println("수정할 정보를 선택하세요...");
+			System.out.print("1. 비밀번호\n2. 이름\n3. 전화번호\n4. 주소\n");
+			System.out.print("입력 > ");
+			select = Integer.parseInt(scanner.nextLine());
+			
+			switch (select) {
+			case 1: updateField = "MEM_PASS"; updateFieldTitle = "비밀번호"; break;
+			case 2: updateField = "MEM_NAME"; updateFieldTitle = "이름"; break;
+			case 3: updateField = "MEM_TEL"; updateFieldTitle = "전화번호"; break;
+			case 4: updateField = "MEM_ADDR"; updateFieldTitle = "주소"; break;
+			default:
+				break;
+			}
+			
+		} while (select < 1 || select > 4);
+		
+		System.out.println();
+		System.out.print("새로운 " + updateFieldTitle + " 입력 > ");
+		change = scanner.nextLine();
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+//			System.out.print("수정할 자료 입력 > ");
+//			change = scanner.nextLine();
+//			
+//			switch (select) {
+//			case 1: sql = "update MYMEMBER set MEM_PASS = ? where MEM_ID = ?"; break;
+//			case 2: sql = "update MYMEMBER set MEM_NAME = ? where MEM_ID = ?"; break;
+//			case 3: sql = "update MYMEMBER set MEM_TEL = ? where MEM_ID = ?"; break;
+//			case 4: sql = "update MYMEMBER set MEM_ADDR = ? where MEM_ADDR = ?"; break;
+//			default:
+//				System.out.println("옳바른 번호를 입력하세요...");
+//				break;
+//			}
+			
+			String sql =  "update MYMEMBER set " + updateField + " = ? where MEM_ID = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, change);
+			pstmt.setString(2, id);
+			
+			update = pstmt.executeUpdate();
+			
+			if (update > 0) {
+				System.out.println(id + updateFieldTitle + " 수정 완료!!!");
+			} else {
+				System.out.println(id + " 회원 정보 수정 실패...");
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+	}
+
 	private void updateMember() {
 		// TODO Auto-generated method stub
 		System.out.println();
@@ -295,6 +379,7 @@ public class JdbcTest06Tea {
 		System.out.println("2. 자 료 삭 제");
 		System.out.println("3. 자 료 수 정 ");
 		System.out.println("4. 전 체 자 료 출 력");
+		System.out.println("5. 자 료 수 정2");
 		System.out.println("0. 작 업 끝.");
 		System.out.println("------------------------------");
 		System.out.print("작업 선택 > ");
