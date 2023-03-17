@@ -3,3 +3,5 @@ javaDocTest.java -> 파일 오른쪽 Export
 Javadoc 선택 Next -> 폴더 확인하고 Next -> Next -> VM options안에 ->
 -charset UTF-8 -encoding UTF-8 -> 작성 후 1.8 버전 확인 -> Finish 누르고 ToAll 눌러서 ->
 자동 폴더 생성 확인하기
+
+폴더가 생기면 한글로 내가 작성한 내용들을 확인할 수 있다(index.html)
