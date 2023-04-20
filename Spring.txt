@@ -4,4 +4,6 @@ Mybatis
    Java의 소스코드 변경없이 SQL문만 변경해서 사용할 수 있다.
  - Mybatis의 데이터 매퍼 API를 사용해서 자바빈즈(보통VO객체) 혹은
    Map 객체를 PreparedStatement의 파라미터에 매핑해주고
-   SQL문의 실행 결과를 자바빈즈(보통 VO 객체) 혹은 Map 객체에 자동으로 매핑해준다.
+   SQL문의 실행 결과를 자바빈즈(보통 VO 객체) 혹은 Map 객체에 자동
+
+으로 매핑해준다.
