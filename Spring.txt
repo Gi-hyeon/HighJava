@@ -12,7 +12,8 @@ Mybatis
 Commons.jar
 
 
-
+JSTL
+JSTL + EL의 조합으로 우리는 스크립틀릿을 사용할 때보다 훨씬 간결하고 가독성 좋은 HTML코드를 완성
 
 
 
