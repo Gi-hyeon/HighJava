@@ -26,6 +26,12 @@ public class Test02 {
 		File file = new File("src\\test\\java03\\Test02.java");
 		System.out.println(file.exists());
 		System.out.println(file.isFile());
+		System.out.println(file.length());
+		System.out.println(file.getName());
+		System.out.println(file.getAbsolutePath());		// 절대 경로
+		
+		
+		
 		
 	}
 }
