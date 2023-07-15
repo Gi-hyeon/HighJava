@@ -25,6 +25,8 @@ public class Test01 {
 		
 		{
 			// UTF-8
+			byte[] bytes2 = data1.getBytes();
+			
 			byte[] bytes = data1.getBytes("utf-8");
 			System.out.println("utf-8  바이트 수 : " + bytes.length);
 			String string = new String(bytes);
@@ -35,7 +37,8 @@ public class Test01 {
 			// EUC-KR
 			byte[] bytes = data1.getBytes("EUC-KR");
 			System.out.println("euc-kr  바이트 수 : " +bytes.length);
-			String string = new String(bytes);
+			// String string = new String(bytes);
+			String string = new String(bytes, "utf-8");
 			System.out.println("바이트 문자열 변환1 : " + string);
 			String string2 = new String(bytes, "euc-kr");
 			System.out.println("바이트 문자열 변환2 : " + string2);
