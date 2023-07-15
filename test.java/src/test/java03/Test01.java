@@ -22,7 +22,9 @@ public class Test01 {
 			byte[] bytes = data1.getBytes("EUC-KR");
 			System.out.println("euc-kr  바이트 수 : " +bytes.length);
 			String string = new String(bytes);
-			System.out.println("바이트 문자열 변환 : " + string);
+			System.out.println("바이트 문자열 변환1 : " + string);
+			String string2 = new String(bytes, "euc-kr");
+			System.out.println("바이트 문자열 변환2 : " + string2);
 		}
 	}
 }
