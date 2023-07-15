@@ -27,6 +27,7 @@ public class Test03 {
 		// new FileReader(path);
 		
 		while (true) {
+			// read : 한글자에 대한 char 데이터
 			int read = fileReader.read();	// 한 글자씩 읽어오기
 			
 			if (read == -1) {
