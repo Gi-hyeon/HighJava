@@ -1,9 +1,23 @@
 package test.java03;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Set;
 
 public class Test01 {
 	public static void main(String[] args) throws UnsupportedEncodingException {
+		
+		{
+			Properties properties = System.getProperties();
+			Set<Object> keySet = properties.keySet();
+			// 기본으로 UTF-8 설정했다는 걸 확인할 수 있다.
+			for (Object o : keySet) {
+				Object object = properties.get(o);
+				System.out.println(o + " : " + object);
+			}
+		}
+		
 		String data1 = "한글";
 		String data2 = "12abc";
 		
